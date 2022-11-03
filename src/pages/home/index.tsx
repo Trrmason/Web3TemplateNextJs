@@ -1,20 +1,20 @@
 import { useWeb3React } from '@web3-react/core'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Flex, Text, Card, Button } from 'theme-ui'
-import { injectedConnection } from '../../utils/connection'
+import ConenctWallet from '../../components/ConnectWallet'
+import {
+  coinbaseWalletConnection,
+  injectedConnection,
+} from '../../utils/connection'
 
 const Home = () => {
-  const {
-    account,
-    accounts,
-    ENSName,
-    ENSNames,
-    isActivating,
-    isActive,
-    connector,
-  } = useWeb3React()
-  console.log(accounts, isActivating, isActive)
-
+  const { account, connector, chainId } = useWeb3React()
+  const disconnect = useCallback(() => {
+    if (connector && connector.deactivate) {
+      connector.deactivate()
+    }
+    connector.resetState()
+  }, [connector])
   return (
     <Flex
       sx={{
@@ -23,26 +23,23 @@ const Home = () => {
         background: 'background',
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
       }}
     >
       <Card>
-        <Text sx={{ color: 'black', mb: '10px', alignSelf: 'center' }}>
-          Connector
-        </Text>
-        {!account && (
-          <Button onClick={() => injectedConnection.connector.activate()}>
-            Press to login to metamask
-          </Button>
-        )}
-        {account && (
-          <>
-            <Text sx={{ color: 'black', mb: '10px' }}>{account}</Text>{' '}
-            <Button onClick={() => connector.resetState()}>
-              Press to logout of metamask
-            </Button>
-          </>
-        )}
+        <ConenctWallet />
       </Card>
+      {account && (
+        <>
+          <Button onClick={disconnect} margin="10px 0px">
+            Press to logout
+          </Button>
+          <Text sx={{ color: 'black' }}>{account}</Text>
+          <Text sx={{ color: 'black' }}>
+            Connected to network id: {chainId}
+          </Text>
+        </>
+      )}
     </Flex>
   )
 }

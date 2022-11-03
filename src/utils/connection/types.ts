@@ -14,6 +14,3 @@ export interface Connection {
   hooks: Web3ReactHooks
   type: ConnectionType
 }
-
-const ye = ''
-export default ye

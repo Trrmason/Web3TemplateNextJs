@@ -1,16 +1,10 @@
 import { useWeb3React } from '@web3-react/core'
 import Head from 'next/head'
-import Image from 'next/image'
-import { ChainId } from '../../constants/networks'
-import { Button } from 'theme-ui'
-import styles from '../styles/Home.module.css'
-import { injectedConnection, networkConnection } from '../utils/connection'
 import Home from './home'
 
 export default function Index() {
-  const { account, accounts, connector, hooks, provider } = useWeb3React()
-  console.log(account, accounts, connector, provider)
-  connector.connectEagerly
+  const { account } = useWeb3React()
+  console.log(account)
   return (
     <>
       <Head>
