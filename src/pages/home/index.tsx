@@ -2,10 +2,6 @@ import { useWeb3React } from '@web3-react/core'
 import React, { useCallback } from 'react'
 import { Flex, Text, Card, Button } from 'theme-ui'
 import ConenctWallet from '../../components/ConnectWallet'
-import {
-  coinbaseWalletConnection,
-  injectedConnection,
-} from '../../utils/connection'
 
 const Home = () => {
   const { account, connector, chainId } = useWeb3React()

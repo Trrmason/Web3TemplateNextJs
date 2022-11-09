@@ -7,6 +7,8 @@ import { WalletConnect } from '@web3-react/walletconnect'
 import METAMASK_ICON_URL from '../../assets/images/metamaskWallet.png'
 import WALLET_CONNECT_ICON_URL from '../../assets/images/walletConnectWallet.svg'
 import COINBASE_ICON_URL from '../../assets/images/coinbaseWallet.svg'
+import GNOSIS_SAFE_ICON_URL from '../../assets/images/gnosisSafeWallet.png'
+
 import { StaticImageData } from 'next/image'
 import { ChainId, RPC_PROVIDERS, RPC_URLS } from '../../constants/networks'
 import { Connection, ConnectionType } from './types'
@@ -113,4 +115,5 @@ export const connectionIcons: Partial<Record<
   [ConnectionType.INJECTED]: METAMASK_ICON_URL,
   [ConnectionType.WALLET_CONNECT]: WALLET_CONNECT_ICON_URL,
   [ConnectionType.COINBASE_WALLET]: COINBASE_ICON_URL,
+  [ConnectionType.GNOSIS_SAFE]: GNOSIS_SAFE_ICON_URL,
 }
